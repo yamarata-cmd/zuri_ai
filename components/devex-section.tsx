@@ -134,16 +134,16 @@ export function DevExSection() {
   const step = STEPS[active]
 
   return (
-    <section id="devex" className="py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
+    <section id="devex" className="py-32 px-6 md:px-12 lg:px-20 border-t border-border">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
-          <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/[0.05] border border-black/[0.06] text-[10px] tracking-widest text-black/40 uppercase">
+          <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border text-[10px] tracking-widest text-muted-foreground uppercase">
             INTEGRATIONS
           </div>
           <h2 className="mt-5 text-4xl md:text-5xl font-light tracking-tight leading-[1.05]">
             Connects to what<br />you already use.
           </h2>
-          <p className="mt-4 text-sm text-black/45 leading-relaxed max-w-md">
+          <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-md">
             Slack for alerts. WhatsApp for guest communication. Your existing cameras. Your POS system. Zuri plugs in — no rip-and-replace.
           </p>
         </div>
@@ -190,9 +190,8 @@ export function DevExSection() {
 
           {/* Right — fixed-size code panel (dark IDE theme) */}
           <div
-            className="lg:col-span-2 rounded-2xl border border-white/[0.08] p-8 flex flex-col"
+            className="lg:col-span-2 rounded-2xl border border-section-contrast-border p-8 flex flex-col bg-section-contrast"
             style={{
-              background: "#0d1117",
               boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
               minHeight: "360px",
             }}

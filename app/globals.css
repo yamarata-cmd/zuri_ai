@@ -114,6 +114,21 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Hybrid dark card utilities */
+  --color-dark-card: var(--dark-card-bg);
+  --color-dark-card-elevated: var(--dark-card-elevated);
+  --color-dark-card-foreground: var(--dark-card-foreground);
+  --color-dark-card-muted: var(--dark-card-muted);
+  --color-dark-card-border: var(--dark-card-border);
+  
+  /* Section contrast utilities for dark panels */
+  --color-section-contrast: var(--section-contrast-bg);
+  --color-section-contrast-elevated: var(--section-contrast-elevated);
+  --color-section-contrast-foreground: var(--section-contrast-foreground);
+  --color-section-contrast-muted: var(--section-contrast-muted);
+  --color-section-contrast-border: var(--section-contrast-border);
+  --color-section-contrast-accent: var(--section-contrast-accent);
 }
 
 @layer base {
@@ -220,4 +235,12 @@ html {
   --dark-card-foreground: oklch(0.95 0 0);
   --dark-card-muted: oklch(0.65 0 0);
   --dark-card-border: oklch(0.25 0 0);
+  
+  /* Section contrast tokens for dark panels on light backgrounds (hybrid theme) */
+  --section-contrast-bg: oklch(0.10 0 0);
+  --section-contrast-elevated: oklch(0.14 0 0);
+  --section-contrast-foreground: oklch(0.98 0 0);
+  --section-contrast-muted: oklch(0.60 0 0);
+  --section-contrast-border: oklch(0.22 0 0);
+  --section-contrast-accent: oklch(0.55 0.15 250);
 }
