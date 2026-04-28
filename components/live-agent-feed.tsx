@@ -116,10 +116,10 @@ export function LiveAgentFeed() {
 
   return (
     <div style={{
-      border: "1px solid rgba(255,255,255,0.1)",
+      border: "1px solid var(--section-contrast-border)",
       borderRadius: 16,
       overflow: "hidden",
-      background: "linear-gradient(145deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%)",
+      background: "linear-gradient(145deg, var(--section-contrast-elevated) 0%, var(--section-contrast-bg) 100%)",
       boxShadow: "0 4px 24px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05)",
       backdropFilter: "blur(12px)",
     }}>
@@ -216,11 +216,12 @@ export function LiveAgentCounter({ dark = false }: { dark?: boolean }) {
       fontFamily: "monospace",
       fontSize: "clamp(3rem, 6vw, 5rem)",
       fontWeight: 300,
-      color: dark ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.85)",
       lineHeight: 1,
       letterSpacing: "-0.02em",
       transition: "color 0.3s ease",
-    }}>
+    }}
+    className={dark ? "text-section-contrast-foreground" : "text-foreground/85"}
+    >
       {mounted ? count.toLocaleString("en-US") : "3,847"}
     </span>
   )

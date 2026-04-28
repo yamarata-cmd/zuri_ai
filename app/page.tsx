@@ -50,7 +50,7 @@ function BentoCard({ children, className = "", delay = 0 }: { children: React.Re
   return (
     <div
       ref={ref}
-      className={`group relative rounded-2xl border border-black/[0.07] bg-white overflow-hidden transition-all duration-700 hover:border-black/[0.15] hover:bg-[#fafaf8] ${className}`}
+      className={`group relative rounded-2xl border border-border bg-card overflow-hidden transition-all duration-700 hover:border-foreground/15 hover:bg-card/80 ${className}`}
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(28px)",
@@ -69,7 +69,7 @@ function BentoCard({ children, className = "", delay = 0 }: { children: React.Re
 // ─── Pill tag ─────────────────────────────────────────────────────────────────
 function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] tracking-widest font-sans text-black/40 bg-black/[0.04]">
+    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] tracking-widest font-sans text-muted-foreground bg-muted">
       {children}
     </span>
   )
@@ -99,7 +99,7 @@ export default function AgenticPage() {
   }
 
   return (
-    <div className="bg-[#F5F4F0] text-[#111] min-h-screen font-sans antialiased">
+    <div className="bg-background text-foreground min-h-screen font-sans antialiased">
 
       {/* ── INTRO ANIMATION ───────────────────────────────────────────────── */}
       <IntroAnimation onDone={handleIntroDone} />
@@ -127,7 +127,7 @@ export default function AgenticPage() {
 
 
         {/* Progressive blur + light gradient rising from bottom */}
-        <div className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: "65%", background: "linear-gradient(to top, #F5F4F0 0%, #F5F4F0 18%, rgba(245,244,240,0.85) 35%, rgba(245,244,240,0.5) 55%, rgba(245,244,240,0.15) 75%, transparent 100%)" }} />
+        <div className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: "65%", background: "linear-gradient(to top, var(--background) 0%, var(--background) 18%, oklch(1 0 0 / 0.85) 35%, oklch(1 0 0 / 0.5) 55%, oklch(1 0 0 / 0.15) 75%, transparent 100%)" }} />
         {/* Backdrop blur layers — progressively lighter toward top */}
         <div className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: "20%", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", maskImage: "linear-gradient(to top, black 0%, transparent 100%)", WebkitMaskImage: "linear-gradient(to top, black 0%, transparent 100%)" }} />
         <div className="absolute inset-x-0 bottom-0 z-10 pointer-events-none" style={{ height: "38%", backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)", maskImage: "linear-gradient(to top, black 0%, transparent 100%)", WebkitMaskImage: "linear-gradient(to top, black 0%, transparent 100%)" }} />
@@ -140,7 +140,7 @@ export default function AgenticPage() {
         <div className="absolute inset-x-0 bottom-0 z-30 flex flex-col px-6 md:px-12 pb-12 max-w-3xl">
           {/* Title */}
           <h1
-            className="text-6xl sm:text-7xl md:text-8xl font-light text-[#111] leading-[1.0] tracking-tight mb-10"
+            className="text-6xl sm:text-7xl md:text-8xl font-light text-foreground leading-[1.0] tracking-tight mb-10"
             style={{
               fontFamily: '"IBM Plex Sans", sans-serif',
               opacity: heroReady ? 1 : 0,
@@ -168,8 +168,8 @@ export default function AgenticPage() {
                   transition: `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${120 + i * 80}ms, filter 0.8s cubic-bezier(0.16,1,0.3,1) ${120 + i * 80}ms, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${120 + i * 80}ms`,
                 }}
               >
-                <div className="text-3xl sm:text-4xl text-[#111] font-light tracking-tight" style={{ fontFamily: '"IBM Plex Sans", sans-serif' }}>{stat.value}</div>
-                <div className="text-xs text-black/40 tracking-widest uppercase mt-1" style={{ fontFamily: '"IBM Plex Sans", sans-serif' }}>{stat.label}</div>
+                <div className="text-3xl sm:text-4xl text-foreground font-light tracking-tight" style={{ fontFamily: '"IBM Plex Sans", sans-serif' }}>{stat.value}</div>
+                <div className="text-xs text-muted-foreground tracking-widest uppercase mt-1" style={{ fontFamily: '"IBM Plex Sans", sans-serif' }}>{stat.label}</div>
               </div>
             ))}
           </div>
@@ -209,16 +209,16 @@ export default function AgenticPage() {
               <div
                 className="absolute inset-0"
                 style={{
-                  background: "linear-gradient(to bottom, transparent 35%, rgba(245,244,240,0.3) 50%, rgba(245,244,240,0.75) 65%, rgba(245,244,240,0.95) 80%, rgb(245,244,240) 100%)",
+                  background: "linear-gradient(to bottom, transparent 35%, oklch(1 0 0 / 0.3) 50%, oklch(1 0 0 / 0.75) 65%, oklch(1 0 0 / 0.95) 80%, var(--card) 100%)",
                 }}
               />
               {/* Content */}
               <div className="relative z-10">
-                <div className="w-10 h-10 rounded-xl border border-black/10 bg-white/60 flex items-center justify-center mb-6" style={{ backdropFilter: "blur(8px)" }}>
+                <div className="w-10 h-10 rounded-xl border border-border bg-card/60 flex items-center justify-center mb-6" style={{ backdropFilter: "blur(8px)" }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><path d="m4.93 4.93 2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
                 </div>
                 <h3 className="text-xl font-light mb-3">Smart Task Engine</h3>
-                <p className="text-sm text-black/45 leading-relaxed max-w-sm">
+                <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
                   Auto-assigns, tracks, and escalates tasks across housekeeping, maintenance, and front desk. Staff confirm via mobile. Delays flagged instantly on Slack.
                 </p>
               </div>
@@ -226,34 +226,34 @@ export default function AgenticPage() {
 
             {/* Bottom row */}
             <BentoCard className="col-span-12 md:col-span-4 p-8 min-h-[200px]" delay={120}>
-              <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
+              <div className="w-10 h-10 rounded-xl border border-border flex items-center justify-center mb-5">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
               </div>
               <h3 className="text-lg font-light mb-2">AI Camera Surveillance</h3>
-              <p className="text-sm text-black/45 leading-relaxed">Your existing cameras become intelligent. Detects theft, loitering, unauthorized access, and front desk inactivity — alerts in real time.</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">Your existing cameras become intelligent. Detects theft, loitering, unauthorized access, and front desk inactivity — alerts in real time.</p>
             </BentoCard>
 
             <BentoCard className="col-span-12 md:col-span-4 p-8 min-h-[200px]" delay={160}>
-              <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
+              <div className="w-10 h-10 rounded-xl border border-border flex items-center justify-center mb-5">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
               </div>
               <h3 className="text-lg font-light mb-2">Revenue & POS Control</h3>
-              <p className="text-sm text-black/45 leading-relaxed">Every transaction tracked. Gaps between orders and payments caught automatically. Daily revenue reports without manual entry.</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">Every transaction tracked. Gaps between orders and payments caught automatically. Daily revenue reports without manual entry.</p>
             </BentoCard>
 
             <BentoCard className="col-span-12 md:col-span-4 p-8 min-h-[200px]" delay={200}>
-              <div className="w-10 h-10 rounded-xl border border-black/10 flex items-center justify-center mb-5">
+              <div className="w-10 h-10 rounded-xl border border-border flex items-center justify-center mb-5">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
               <h3 className="text-lg font-light mb-2">Inventory Intelligence</h3>
-              <p className="text-sm text-black/45 leading-relaxed">Real-time stock levels across bar, kitchen, and supplies. Predicts shortages days ahead. Flags stock-vs-sales discrepancies.</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">Real-time stock levels across bar, kitchen, and supplies. Predicts shortages days ahead. Flags stock-vs-sales discrepancies.</p>
             </BentoCard>
           </div>
         </div>
       </section>
 
       {/* ── BUILD YOUR AGENTS (4 cards) ───────────────────────────────────── */}
-      <section id="agents" className="py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
+      <section id="agents" className="py-32 px-6 md:px-12 lg:px-20 border-t border-border">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
             <div>
@@ -263,7 +263,7 @@ export default function AgenticPage() {
                 {"Six intelligent modules.\nOne unified system."}
               </RevealText>
             </div>
-            <p className="text-sm text-black/45 leading-relaxed max-w-xs">
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               {"Every feature is live, tested, and proven in real hotel environments. No demos, no mockups — real results."}
             </p>
           </div>
@@ -273,7 +273,7 @@ export default function AgenticPage() {
       </section>
 
       {/* ── HOW IT WORKS ──────────────────────────────────────────────────── */}
-      <section id="workflow" className="py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06] overflow-hidden">
+      <section id="workflow" className="py-32 px-6 md:px-12 lg:px-20 border-t border-border overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
             <PixelIcon type="workflow" size={40} />
@@ -305,12 +305,12 @@ export default function AgenticPage() {
                 </div>
                 {/* Number top-left */}
                 <div className="relative z-10 p-7">
-                  <span className="font-pixel text-[11px] text-black/20 tracking-widest block">{step.n}</span>
+                  <span className="font-pixel text-[11px] text-foreground/20 tracking-widest block">{step.n}</span>
                 </div>
                 {/* Text pushed further down */}
                 <div className="relative z-10 px-7 pb-7 mt-auto pt-16">
                   <h3 className="text-2xl font-light mb-3">{step.title}</h3>
-                  <p className="text-sm text-black/45 leading-relaxed">{step.desc}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
                 </div>
               </BentoCard>
             ))}
@@ -319,7 +319,7 @@ export default function AgenticPage() {
       </section>
 
       {/* ── INTEGRATIONS ──────────────────────────────────────────────────── */}
-      <section id="integrations" className="py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
+      <section id="integrations" className="py-32 px-6 md:px-12 lg:px-20 border-t border-border">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
             <div>
@@ -329,14 +329,14 @@ export default function AgenticPage() {
                 {"Connects to what\nyou already use."}
               </RevealText>
             </div>
-            <p className="text-sm text-black/45 leading-relaxed max-w-xs">
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               Slack for alerts. WhatsApp for guest communication. Your existing cameras. Your POS system. Zuri plugs in — no rip-and-replace.
             </p>
           </div>
 
           {/* Full-width image block with glass cards */}
           {/* Mobile: flex-col, image + cards stacked. Desktop: image fills block, cards absolute */}
-          <div className="rounded-2xl overflow-hidden border border-black/[0.07] flex flex-col md:block md:relative" onMouseMove={handleMouse}>
+          <div className="rounded-2xl overflow-hidden border border-border flex flex-col md:block md:relative" onMouseMove={handleMouse}>
             {/* Image */}
             <div className="relative w-full h-[280px] md:h-[480px] shrink-0">
               <img
@@ -358,9 +358,9 @@ export default function AgenticPage() {
               >
                 <Tag>SLACK INTEGRATION</Tag>
                 <h3 className="mt-3 text-lg font-light mb-2">Real-time alerts</h3>
-                <p className="text-xs text-black/45 leading-relaxed mb-4">Instant notifications for tasks, security, and operations — directly in Slack.</p>
-                <div className="bg-black/[0.05] rounded-lg border border-black/[0.07] p-3 font-mono text-[11px] text-black/50 leading-relaxed">
-                  <span className="text-black/25">/zuri alert</span><br />
+                <p className="text-xs text-muted-foreground leading-relaxed mb-4">Instant notifications for tasks, security, and operations — directly in Slack.</p>
+                <div className="bg-muted rounded-lg border border-border p-3 font-mono text-[11px] text-muted-foreground leading-relaxed">
+                  <span className="text-foreground/25">/zuri alert</span><br />
                   <span className="text-amber-700/70">Task overdue:</span> Room 204 cleaning<br />
                   <span className="text-amber-700/70">Assigned to:</span> Maria<br />
                   <span className="text-amber-700/70">Status:</span> No confirmation received<br />
@@ -378,9 +378,9 @@ export default function AgenticPage() {
               >
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-2 h-2 rounded-full bg-emerald-500/80 animate-pulse" />
-                  <span className="text-xs text-black/40 tracking-widest">LIVE DASHBOARD</span>
+                  <span className="text-xs text-muted-foreground tracking-widest">LIVE DASHBOARD</span>
                 </div>
-                <p className="text-sm text-black/45">Real-time hotel operations view. Every room, every staff member, every transaction — visible on any device.</p>
+                <p className="text-sm text-muted-foreground">Real-time hotel operations view. Every room, every staff member, every transaction — visible on any device.</p>
               </div>
             </div>
           </div>
@@ -388,7 +388,7 @@ export default function AgenticPage() {
       </section>
 
       {/* ── SECURITY & OBSERVABILITY ──────────────────────────────────��──── */}
-      <section id="security" className="py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
+      <section id="security" className="py-32 px-6 md:px-12 lg:px-20 border-t border-border">
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
             <PixelIcon type="platform" size={40} />
@@ -402,7 +402,7 @@ export default function AgenticPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left side — descriptions */}
             <div className="space-y-6">
-              <p className="text-sm text-black/45 leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 Every task, every alert, every transaction logged with timestamp and staff ID. Complete traceability.
               </p>
 
@@ -413,10 +413,10 @@ export default function AgenticPage() {
                   { label: "Privacy Protected", desc: "Guest data encrypted. Staff monitoring restricted to operational areas only. GDPR-compliant." },
                 ].map((item) => (
                   <div key={item.label} className="flex gap-4">
-                    <div className="w-1 bg-black/10 rounded-full shrink-0" />
+                    <div className="w-1 bg-border rounded-full shrink-0" />
                     <div>
                       <h3 className="text-sm font-light mb-1">{item.label}</h3>
-                      <p className="text-xs text-black/35">{item.desc}</p>
+                      <p className="text-xs text-muted-foreground/70">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -425,8 +425,8 @@ export default function AgenticPage() {
               {/* Compliance badges — vertical stack */}
               <div className="pt-4 flex flex-col gap-2">
                 {["GDPR Compliant", "End-to-end Encryption", "Audit Logs", "Staff Privacy"].map((badge) => (
-                  <div key={badge} className="flex items-center gap-2 text-xs text-black/25">
-                    <span className="w-1 h-1 rounded-full bg-black/25" />
+                  <div key={badge} className="flex items-center gap-2 text-xs text-foreground/25">
+                    <span className="w-1 h-1 rounded-full bg-foreground/25" />
                     {badge}
                   </div>
                 ))}
@@ -435,9 +435,8 @@ export default function AgenticPage() {
 
             {/* Right side — live audit log visualization (dark terminal theme) */}
             <div 
-              className="rounded-2xl border border-white/[0.08] p-6 lg:row-span-1 overflow-hidden"
+              className="rounded-2xl border border-section-contrast-border p-6 lg:row-span-1 overflow-hidden bg-section-contrast"
               style={{
-                background: "#0f0f0f",
                 boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
               }}
             >
@@ -495,14 +494,14 @@ export default function AgenticPage() {
       <DevExSection />
 
       {/* ── MARQUEE CAPABILITIES ──────────────────────────────────────────── */}
-      <section className="py-0 border-t border-black/[0.06] overflow-hidden select-none">
-        <div className="flex border-b border-black/[0.06]" style={{ animation: "marqueeLeft 28s linear infinite" }}>
+      <section className="py-0 border-t border-border overflow-hidden select-none">
+        <div className="flex border-b border-border" style={{ animation: "marqueeLeft 28s linear infinite" }}>
           {[...Array(3)].map((_, rep) => (
             <div key={rep} className="flex shrink-0">
               {["Task Automation", "CCTV Analysis", "Revenue Tracking", "Inventory Control", "Guest Messaging", "Staff Management", "Security Alerts", "POS Integration", "Daily Reports", "Shift Handovers"].map((cap) => (
-                <div key={cap} className="flex items-center gap-6 px-10 py-5 border-r border-black/[0.06] shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-black/20 shrink-0" />
-                  <span className="text-sm text-black/45 whitespace-nowrap tracking-wide">{cap}</span>
+                <div key={cap} className="flex items-center gap-6 px-10 py-5 border-r border-border shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-foreground/20 shrink-0" />
+                  <span className="text-sm text-muted-foreground whitespace-nowrap tracking-wide">{cap}</span>
                 </div>
               ))}
             </div>
@@ -512,9 +511,9 @@ export default function AgenticPage() {
           {[...Array(3)].map((_, rep) => (
             <div key={rep} className="flex shrink-0">
               {["Housekeeping", "Maintenance", "Front Desk", "Pool Bar", "Kitchen Stock", "Theft Detection", "Access Control", "WhatsApp Chat", "Review Requests", "Guest History"].map((cap) => (
-                <div key={cap} className="flex items-center gap-6 px-10 py-5 border-r border-black/[0.06] shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-black/12 shrink-0" />
-                  <span className="text-sm text-black/30 whitespace-nowrap tracking-wide">{cap}</span>
+                <div key={cap} className="flex items-center gap-6 px-10 py-5 border-r border-border shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-foreground/10 shrink-0" />
+                  <span className="text-sm text-foreground/30 whitespace-nowrap tracking-wide">{cap}</span>
                 </div>
               ))}
             </div>
@@ -527,7 +526,7 @@ export default function AgenticPage() {
         id="live" 
         className="relative py-32 px-6 md:px-12 lg:px-20 overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #1a1f2e 0%, #0f1319 50%, #111827 100%)",
+          background: "linear-gradient(135deg, oklch(0.18 0.02 260) 0%, var(--section-contrast-bg) 50%, oklch(0.15 0.015 250) 100%)",
         }}
       >
         {/* Subtle gradient orbs for depth */}
@@ -563,7 +562,7 @@ export default function AgenticPage() {
       </section>
 
       {/* ── PRICING ───────────────────────────────────���────������─────────────── */}
-      <section id="pricing" className="py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
+      <section id="pricing" className="py-32 px-6 md:px-12 lg:px-20 border-t border-border">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16 flex flex-col items-center">
             <PixelIcon type="pricing" size={40} />
@@ -576,35 +575,34 @@ export default function AgenticPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-3xl mx-auto" onMouseMove={handleMouse}>
             {/* Standard Plan */}
             <BentoCard
-              className="p-8 flex flex-col border-black/20 bg-[#F0EEE8]"
+              className="p-8 flex flex-col border-border bg-muted"
               delay={0}
             >
               <div className="mb-8">
-                <div className="font-pixel text-[11px] tracking-widest text-black/40 mb-4">ZURI AI FULL SYSTEM</div>
+                <div className="font-pixel text-[11px] tracking-widest text-muted-foreground mb-4">ZURI AI FULL SYSTEM</div>
                 <div className="flex items-baseline gap-1 mb-1">
                   <span className="text-4xl font-light">$400</span>
-                  <span className="text-black/40 text-sm">/mo</span>
+                  <span className="text-muted-foreground text-sm">/mo</span>
                 </div>
-                <p className="text-xs text-black/35 tracking-wide">vs. Hiring an Operations Manager: $2,000+/month</p>
+                <p className="text-xs text-muted-foreground/70 tracking-wide">vs. Hiring an Operations Manager: $2,000+/month</p>
               </div>
               <ul className="space-y-3 flex-1 mb-8">
                 {["All six modules included", "Unlimited tasks", "Unlimited camera feeds", "Slack & WhatsApp integration", "Daily reports", "Dedicated setup support", "No contract, cancel anytime"].map(f => (
-                  <li key={f} className="flex items-center gap-3 text-sm text-black/55">
-                    <div className="w-1 h-1 rounded-full bg-black/25 shrink-0" />
+                  <li key={f} className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <div className="w-1 h-1 rounded-full bg-foreground/25 shrink-0" />
                     {f}
                   </li>
                 ))}
               </ul>
-              <button className="w-full py-3 rounded-xl text-sm tracking-widest transition-all duration-200 bg-[#111] text-white hover:bg-[#333]">
+              <button className="w-full py-3 rounded-xl text-sm tracking-widest transition-all duration-200 bg-foreground text-background hover:bg-foreground/80">
                 GET STARTED
               </button>
             </BentoCard>
 
             {/* Enterprise Plan — Dark Theme */}
             <div 
-              className="rounded-2xl border border-white/[0.1] p-8 flex flex-col overflow-hidden"
+              className="rounded-2xl border border-section-contrast-border p-8 flex flex-col overflow-hidden bg-section-contrast"
               style={{
-                background: "#0f0f0f",
                 boxShadow: "0 4px 24px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3)",
               }}
             >
@@ -635,7 +633,7 @@ export default function AgenticPage() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────────────── */}
-      <section className="relative py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06] overflow-hidden">
+      <section className="relative py-32 px-6 md:px-12 lg:px-20 border-t border-border overflow-hidden">
         {/* Glass panels image — anchored to bottom center */}
         <img
           src="/images/footer.png"
@@ -658,14 +656,14 @@ export default function AgenticPage() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: "linear-gradient(to top, rgb(245,244,240) 0%, rgba(245,244,240,0.92) 18%, rgba(245,244,240,0.55) 35%, transparent 55%)",
+            background: "linear-gradient(to top, var(--background) 0%, oklch(1 0 0 / 0.92) 18%, oklch(1 0 0 / 0.55) 35%, transparent 55%)",
           }}
         />
         <div className="relative z-10 max-w-2xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.05] mb-6">
             Start building your<br />autonomous hotel operation.
           </h2>
-          <p className="text-sm text-black/45 leading-relaxed mb-10">
+          <p className="text-sm text-muted-foreground leading-relaxed mb-10">
             {"Join forward-thinking hotels running on Zuri AI — 24/7, no human needed in the loop."}
           </p>
           {!submitted ? (
@@ -679,11 +677,11 @@ export default function AgenticPage() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
-                className="flex-1 bg-white border border-black/10 rounded-xl px-4 py-3 text-sm text-[#111] placeholder:text-black/25 focus:outline-none focus:border-black/25 transition-colors"
+                className="flex-1 bg-card border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-foreground/25 focus:outline-none focus:border-foreground/25 transition-colors"
               />
               <button
                 type="submit"
-                className="px-8 py-3 bg-[#111] text-white text-sm rounded-xl hover:bg-[#333] transition-colors tracking-widest font-medium"
+                className="px-8 py-3 bg-foreground text-background text-sm rounded-xl hover:bg-foreground/80 transition-colors tracking-widest font-medium"
               >
                 REQUEST A LIVE DEMO
               </button>
@@ -699,9 +697,9 @@ export default function AgenticPage() {
 
 
       {/* ── FOOTER ────────────────────────────────────────────────────────── */}
-      <footer className="py-10 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
+      <footer className="py-10 px-6 md:px-12 lg:px-20 border-t border-border">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          <span className="font-pixel text-xs tracking-[0.25em] text-black/50">ZURI AI</span>
+          <span className="font-pixel text-xs tracking-[0.25em] text-muted-foreground">ZURI AI</span>
 
           {/* Nav sections */}
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
@@ -712,7 +710,7 @@ export default function AgenticPage() {
               { label: "Live",         href: "#live" },
               { label: "Pricing",      href: "#pricing" },
             ].map(l => (
-              <a key={l.label} href={l.href} className="text-xs text-black/35 hover:text-black/70 transition-colors tracking-widest">{l.label}</a>
+              <a key={l.label} href={l.href} className="text-xs text-muted-foreground/70 hover:text-foreground/70 transition-colors tracking-widest">{l.label}</a>
             ))}
           </div>
 
@@ -724,12 +722,12 @@ export default function AgenticPage() {
               { label: "Docs",    href: "#" },
               { label: "GitHub",  href: "#" },
             ].map(l => (
-              <a key={l.label} href={l.href} className="text-xs text-black/25 hover:text-black/55 transition-colors tracking-widest">{l.label}</a>
+              <a key={l.label} href={l.href} className="text-xs text-foreground/25 hover:text-foreground/55 transition-colors tracking-widest">{l.label}</a>
             ))}
           </div>
         </div>
-        <div className="max-w-6xl mx-auto mt-8 pt-6 border-t border-black/[0.04]">
-          <span className="text-xs text-black/20">ZURI AI · Powered by Claude · Built in Zanzibar, Tanzania</span>
+        <div className="max-w-6xl mx-auto mt-8 pt-6 border-t border-border/40">
+          <span className="text-xs text-foreground/20">ZURI AI · Powered by Claude · Built in Zanzibar, Tanzania</span>
         </div>
       </footer>
     </div>
